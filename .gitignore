@@ -8,3 +8,11 @@
 *.war
 *.ear
 
+.classpath
+.project
+.settings/
+
+application.properties
+
+target/
+target-eclipse/
