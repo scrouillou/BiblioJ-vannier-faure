@@ -17,4 +17,7 @@ application.properties
 target/
 target-eclipse/
 
+.DS_Store
 */.DS_Store
+
+devDb*
