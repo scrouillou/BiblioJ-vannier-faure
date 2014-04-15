@@ -11,14 +11,15 @@ class Auteur {
 
     static constraints = {
 		nom blank: false
+		prenom nullable: true
     }
 	
 	String toString() {
-		if(prenom.isEmpty()) {
-			nom
+		if(prenom) {
+			prenom + " " + nom
 		}
 		else {
-			prenom + " " + nom
+			nom
 		}
 	}
 }
