@@ -33,8 +33,6 @@ class BootStrap {
 					
 					auteur.save()
 					
-					println auteur.id + ":" + auteur
-					
 					auteur.addToLivres(livre)
 					
 					auteur.save()
