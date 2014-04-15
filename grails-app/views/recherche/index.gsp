@@ -34,6 +34,7 @@
 				<input type="submit" value="Rechercher" />
 			</form>
 			
+			<g:if test="${resultats.size() != 0}">
 			<h1>Résultats</h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
@@ -49,6 +50,8 @@
 						<g:sortableColumn property="nbExemplairesDispo" title="${message(code: 'livre.nbExemplairesDispo.label', default: 'Nb Exemplaires Dispo')}" />
 					
 						<th><g:message code="livre.type.label" default="Type" /></th>
+						
+						<th>Panier</th>
 					
 					</tr>
 				</thead>
@@ -63,7 +66,12 @@
 						<td>${fieldValue(bean: livreInstance, field: "nbExemplairesDispo")}</td>
 					
 						<td>${fieldValue(bean: livreInstance, field: "type")}</td>
-					
+						
+						<td><a href="${createLink(
+							controller: 'panier',
+							action: 'ajouter',
+							params: [ livre: livreInstance.id] )}">Ajouter</a></td>
+						
 					</tr>
 				</g:each>
 				</tbody>
@@ -71,6 +79,10 @@
 			<div class="pagination">
 				<g:paginate total="${nbResultats}" params="${[titre: params.titre, auteur: params.auteur, type: params.type, recherche: params.recherche].findAll {it.value} }" />
 			</div>
+			</g:if>
+			<g:else>
+				<h1>Aucun résultat</h1>
+			</g:else>
 		</div>
 	</body>
 </html>
