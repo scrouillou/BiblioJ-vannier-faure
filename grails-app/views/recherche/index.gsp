@@ -21,7 +21,7 @@
 		<div id="list-livre" class="content scaffold-list" role="main">
 			<h1>Recherche</h1>
 			
-			<form name="input" action="index" method="get" style="text-align:center;">
+			<form name="input" controller="recherche" action="index" method="get" style="text-align:center;">
 				<label for="auteur">Auteur
 				<input type="text" id="auteur" name="auteur" value="${auteur }"/></label>
 				<br/>

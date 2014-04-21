@@ -8,9 +8,11 @@ class Reservation {
 		livres: Livre]
 
     static constraints = {
+		code blank: false
+		date blank: false
     }
 	
-	String toStirng() {
-		code + "[" + date + "]"
+	String toString() {
+		code
 	}
 }

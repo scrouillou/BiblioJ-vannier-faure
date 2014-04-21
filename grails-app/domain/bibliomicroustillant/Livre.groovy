@@ -22,6 +22,7 @@ class Livre {
 	
 	static mapping = {
 		auteurs lazy : false
+		version timestamp : true
 	}
 	
 	String toString() {
