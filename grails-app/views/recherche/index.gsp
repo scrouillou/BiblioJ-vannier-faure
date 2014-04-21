@@ -17,20 +17,15 @@
 			<h1>Recherche</h1>
 			
 			<form name="input" action="index" method="get" style="text-align:center;">
-				<input type="text" name="recherche" value="${champ }"/> <br />
-		
-				
-				
-		       <input type="checkbox" name="auteur" id="auteur" <g:if test="${chercherDansAuteur == true}">checked</g:if>/> 
-		       <label for="auteur">Auteur</label>
-					&nbsp;
-		       <input type="checkbox" name="titre" id="titre" <g:if test="${chercherDansTitre == true}">checked</g:if>/> 
-		       <label for="titre">Titre</label>
-					&nbsp;
-		       <input type="checkbox" name="type" id="type" <g:if test="${chercherDansType == true}">checked</g:if>/> 
-		       <label for="type">Type de document</label>
-					<br /> 
-					
+				<label for="auteur">Auteur
+				<input type="text" id="auteur" name="auteur" value="${auteur }"/></label>
+				<br/>
+				<label for="titre">Titre
+				<input type="text" id="titre" name="titre" value="${titre }"/></label>
+				<br/>
+				<label for="type">Type
+				<input type="text" id="type" name="type" value="${type }"/></label>
+				<br/>
 				<input type="submit" value="Rechercher" />
 			</form>
 			
@@ -77,7 +72,7 @@
 				</tbody>
 			</table>
 			<div class="pagination">
-				<g:paginate total="${nbResultats}" params="${[titre: params.titre, auteur: params.auteur, type: params.type, recherche: params.recherche].findAll {it.value} }" />
+				<g:paginate total="${nbResultats}" params="${[titre: params.titre, auteur: params.auteur, type: params.type] }" />
 			</div>
 			</g:if>
 			<g:else>
