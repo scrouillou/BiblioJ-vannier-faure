@@ -20,6 +20,10 @@ class Livre {
 		type nullable: true
     }
 	
+	static mapping = {
+		auteurs lazy : false
+	}
+	
 	String toString() {
 		titre
 	}

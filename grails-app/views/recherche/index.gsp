@@ -6,6 +6,11 @@
 		<title>Recherche</title>
 	</head>
 	<body>
+		
+		<g:if test="${flash.message}">
+			<div class="message" role="status">${flash.message}</div>
+		</g:if>
+		
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
@@ -25,19 +30,21 @@
 				<br/>
 				<label for="type">Type
 					<select id="type" name="type">
+						<option>Tous les types</option>
+						<option disabled>----------</option>
 						<g:each in="${ types }" var="t">
-							<option <g:if test="${type == t}"></g:if>>${ t }</option>
+							<option <g:if test="${ type == t.toString() }"> selected </g:if> >
+								${ t }
+							</option>
 						</g:each> 
 					</select></label>
 				<br/>
 				<input type="submit" value="Rechercher" />
 			</form>
 			
-			<g:if test="${resultats.size() != 0}">
+			<g:if test="${ resultats.size() != 0 }">
 			<h1>Résultats</h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
+			
 			<table>
 				<thead>
 					<tr>

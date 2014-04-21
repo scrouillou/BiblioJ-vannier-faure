@@ -1,37 +1,46 @@
 package bibliomicroustillant
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.Map;
 
 class PanierService {
 	static scope = "session"
 	
-	Map<Integer, Integer> contenu = new HashMap<>()
+	List<Integer> contenu = new ArrayList<>()
 
 	void ajouter(Integer livreId) {
-		def nouvelleQuantite = Math.min(
-			(contenu.get(livreId)?:0) + 1,
-			Livre.get(livreId).nbExemplairesDispo)
-		
-		contenu.put(livreId, nouvelleQuantite)
-	}
-
-	void enlever(Integer livreId) {
-		def nouvelleQuantite = (contenu.get(livreId)?:0) - 1
-		
-		if(nouvelleQuantite > 0) {
-			contenu.put(livreId, nouvelleQuantite)
-		}
-		else {
-			supprimer(livreId)
+		if( ! contenu.contains( livreId ) ) {
+			contenu.add( livreId )
 		}
 	}
 
 	void supprimer(Integer livreId) {
-		contenu.remove(livreId)
+		contenu.remove( (Object) livreId )
 	}
 
 	void vider() {
 		contenu.clear()
 	}
-
+	
+	def commander() {
+		Reservation reserv = new Reservation()
+		reserv.code = Reservation.list().size() + 1
+		reserv.date = new Date() + 1
+		
+		reserv.save()
+		
+		def livre
+		contenu.each {
+			livre = Livre.get( it )
+			if(livre.nbExemplairesDispo > 0) {
+				livre.addToReservations( reserv )
+				livre.nbExemplairesDispo --
+				livre.save()
+			}
+		}
+		
+		reserv.save()
+		
+		reserv
+	}
 }

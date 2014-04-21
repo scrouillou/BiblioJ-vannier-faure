@@ -23,7 +23,6 @@
 		</div>
 		<div style="margin: 15px; border: 1px solid grey; padding: 5px;">
 			<g:include controller="panier" action="show"/>
-			<hr/>
 		</div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo">

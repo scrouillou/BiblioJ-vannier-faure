@@ -6,7 +6,7 @@
 	<table>
 		<tr>
 			<th>Livre</th>
-			<th>Quantité</th>
+			<th>Supprimer</th>
 		</tr>
 		<g:each in="${contenu }" var="ligne">
 		<tr>
@@ -14,18 +14,8 @@
 			<td>
 				<a href="${createLink(
 								controller: 'panier',
-								action: 'enlever',
-								params: [ livre: ligne.id ] )}">-</a>
-				${ligne.quantite }
-				<a href="${createLink(
-								controller: 'panier',
-								action: 'ajouter',
-								params: [ livre: ligne.id ] )}">+</a>
-			
-				<a href="${createLink(
-								controller: 'panier',
 								action: 'supprimer',
-								params: [ livre: ligne.id ] )}">\/</a>
+								params: [ livre: ligne.id ] )}">Supprimer</a>
 			</td>
 		</g:each>
 	</table>
@@ -33,6 +23,8 @@
 				controller: 'panier',
 				action: 'vider' )}">Vider le panier</a>
 	<br/>
-	<a href="">Commander</a>
+	<a href="${createLink(
+				controller: 'panier',
+				action: 'commander' )}">Commander</a>
 
 </g:else>
