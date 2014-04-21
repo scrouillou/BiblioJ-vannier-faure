@@ -18,10 +18,8 @@
 		<r:layoutResources />
 	</head>
 	<body>
-		<div id="grailsLogo" role="banner">
-			<a href="http://grails.org">
-				<img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/>
-			</a>
+		<div id="grailsLogo" style="text-align: center; font-size: 240%;">
+			<h1>BiblioJ<h1>
 		</div>
 		<div style="margin: 15px; border: 1px solid grey; padding: 5px;">
 			<g:include controller="panier" action="show"/>
