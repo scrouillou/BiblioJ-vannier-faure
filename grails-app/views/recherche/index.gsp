@@ -24,7 +24,11 @@
 				<input type="text" id="titre" name="titre" value="${titre }"/></label>
 				<br/>
 				<label for="type">Type
-				<input type="text" id="type" name="type" value="${type }"/></label>
+					<select id="type" name="type">
+						<g:each in="${ types }" var="t">
+							<option <g:if test="${type == t}"></g:if>>${ t }</option>
+						</g:each> 
+					</select></label>
 				<br/>
 				<input type="submit" value="Rechercher" />
 			</form>
@@ -40,9 +44,9 @@
 					
 						<g:sortableColumn property="titre" title="${message(code: 'livre.titre.label', default: 'Titre')}" />
 					
-						<g:sortableColumn property="nbExemplaires" title="${message(code: 'livre.nbExemplaires.label', default: 'Nb Exemplaires')}" />
+						<g:sortableColumn property="auteurs" title="${message(code: 'livre.auteurs.label', default: 'Auteurs')}" />
 					
-						<g:sortableColumn property="nbExemplairesDispo" title="${message(code: 'livre.nbExemplairesDispo.label', default: 'Nb Exemplaires Dispo')}" />
+						<g:sortableColumn property="nbExemplairesDispo" title="${message(code: 'livre.nbExemplairesDispo.label', default: 'Exemplaires')}" />
 					
 						<th><g:message code="livre.type.label" default="Type" /></th>
 						
@@ -56,7 +60,13 @@
 					
 						<td><g:link controller="livre" action="show" id="${livreInstance.id}">${fieldValue(bean: livreInstance, field: "titre")}</g:link></td>
 					
-						<td>${fieldValue(bean: livreInstance, field: "nbExemplaires")}</td>
+						<td>
+							<g:each in="${livreInstance.auteurs}" var="auteur">
+								<g:link controller="auteur" action="show" id="${auteur.id}">
+									${auteur}
+								</g:link>
+							</g:each>
+						</td>
 					
 						<td>${fieldValue(bean: livreInstance, field: "nbExemplairesDispo")}</td>
 					

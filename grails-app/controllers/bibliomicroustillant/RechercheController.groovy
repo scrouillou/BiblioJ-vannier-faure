@@ -6,10 +6,13 @@ class RechercheController {
 
 	def index(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
+		params.titre = params.titre ?: ""
+		params.auteur = params.auteur ?: ""
+		params.type = params.type ?: ""
 		
-		def chercherDansTitre = (params.titre.isEmpty()) ? false: true
-		def chercherDansAuteur = (params.auteur.isEmpty()) ? false: true
-		def chercherDansType = (params.type.isEmpty()) ? false: true
+		def chercherDansTitre = ( params.titre.isEmpty()) ? false: true
+		def chercherDansAuteur = ( params.auteur.isEmpty()) ? false: true
+		def chercherDansType = ( params.type.isEmpty()) ? false: true
 		def champ = params.recherche
 
 		def resultats = []
@@ -18,7 +21,7 @@ class RechercheController {
 			resultats = Livre.createCriteria().list(params) {
 				and {
 					if(chercherDansType) {
-						'in'("type", TypeDocument.findAllByIntituleLike("%" + params.type + "%"))
+						'in'("type", TypeDocument.findAllByIntituleLike(params.type))
 					}
 					if(chercherDansAuteur) {
 						auteurs {
@@ -32,8 +35,11 @@ class RechercheController {
 				order("titre","asc")
 			}
 		}
+		
+		def types = TypeDocument.findAll()
 
 		[
+			types: types,
 			resultats: resultats,
 			nbResultats: resultats.totalCount,
 			auteur: params.auteur,
