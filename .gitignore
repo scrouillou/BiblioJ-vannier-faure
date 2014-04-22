@@ -12,8 +12,6 @@
 .project
 .settings/
 
-application.properties
-
 target/
 target-eclipse/
 
