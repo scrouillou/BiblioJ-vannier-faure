@@ -12,7 +12,6 @@ class RechercheController {
 		
 		def chercherDansTitre = ( params.titre.isEmpty()) ? false: true
 		def chercherDansAuteur = ( params.auteur.isEmpty()) ? false: true
-		println params.type
 		def chercherDansType = ( params.type == "Tous les types" ) ? false: true
 		def champ = params.recherche
 
